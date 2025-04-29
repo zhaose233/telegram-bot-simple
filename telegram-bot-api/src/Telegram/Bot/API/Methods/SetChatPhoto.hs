@@ -33,7 +33,7 @@ instance ToMultipart Tmp SetChatPhotoRequest where
     makeFile "photo" setChatPhotoPhoto (MultipartData fields []) where
     fields =
       [ Input "chat_id" $ case setChatPhotoChatId of
-          SomeChatId (ChatId chat_id) -> T.pack $ show chat_id
+          SomeChatId (ChatId chat_id) -> T.show chat_id
           SomeChatUsername txt -> txt
       ]
 

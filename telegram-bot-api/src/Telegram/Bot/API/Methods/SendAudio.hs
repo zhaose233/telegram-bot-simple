@@ -66,11 +66,11 @@ instance ToMultipart Tmp SendAudioRequest where
     MultipartData fields [] where
     fields =
       [ Input "chat_id" $ case sendAudioChatId of
-          SomeChatId (ChatId chat_id) -> T.pack $ show chat_id
+          SomeChatId (ChatId chat_id) -> T.show chat_id
           SomeChatUsername txt -> txt
       ] <> catMaybes
       [ sendAudioMessageThreadId <&>
-        \t -> Input "message_thread_id" (T.pack $ show t)
+        \t -> Input "message_thread_id" (T.show t)
       , sendAudioCaption <&>
         \t -> Input "caption" t
       , sendAudioParseMode <&>

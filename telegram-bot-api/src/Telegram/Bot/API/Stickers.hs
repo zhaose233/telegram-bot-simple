@@ -66,11 +66,11 @@ instance ToMultipart Tmp SendStickerRequest where
     makeFile "sticker" sendStickerSticker (MultipartData fields []) where
     fields =
       [ Input "chat_id" $ case sendStickerChatId of
-          SomeChatId (ChatId chat_id) -> T.pack $ show chat_id
+          SomeChatId (ChatId chat_id) -> T.show chat_id
           SomeChatUsername txt -> txt
       ] <> catMaybes
       [ sendStickerMessageThreadId <&>
-        \t -> Input "message_thread_id" (T.pack $ show t)
+        \t -> Input "message_thread_id" (T.show t)
       , sendStickerDisableNotification <&>
         \t -> Input "disable_notification" (bool "false" "true" t)
       , sendStickerProtectContent <&>
